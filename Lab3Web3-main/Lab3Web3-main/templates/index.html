@@ -1,0 +1,48 @@
+{% extends "layout.html"%}
+
+{% block titulo %}
+<title>Hecho con Flask</title>
+{% endblock %}
+
+
+{% block contenido %}
+<a class="btn btn-outline-primary btn-sm float-right" href="{{ url_for('login') }}">Iniciar sesión</a>
+<h3>Control de datos con Flask</h3>
+<br/>
+<h5>Datos</h5>
+<table class="table ">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Título</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Controles</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for dato in datos %}
+    <tr>
+        <th scope="row">{{ dato.ID}}</th>
+        <td>{{ dato.Texto}}</td>
+        <td>{{ dato.Descripcion}}</td>
+        <td>
+            <button class="btn btn-outline-success btn-sm" onclick="modificar({{ dato.ID }})">Editar</button>
+            <script>
+                function modificar(ide){
+                    window.location.href = "/modificar/" + ide;
+                }
+                 function borrar(ide){
+            window.location.href = "/exec_eliminar/" + ide;
+        }
+
+            </script>
+            <button class="btn btn-outline-danger btn-sm" onclick="borrar({{ dato.ID }})">Borrar</button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<hr/>
+<a class="btn btn-outline-primary btn-sm" href="{{ url_for('agregar') }}">Agregar dato</a>
+
+{% endblock %}

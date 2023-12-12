@@ -1,0 +1,38 @@
+{% extends "layout.html"%}
+
+{% block titulo %}
+<script src="../static/js/jquery-3.5.1.js"></script>
+<script src="../static/js/modificarRegistro.js"></script>
+<title>Modificar datos con Flask</title>
+{% endblock %}
+
+{% block contenido %}
+<h3>Actualizando registro con Flask</h3>
+<br/>
+{% for dato in datos %}
+<form class="form" action="/">
+    <div class="from-group row">
+        <label for="" class="col-sm-2 col-form-label"><strong>ID</strong></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" disabled value="{{ dato.ID}}">
+        </div>
+    </div>
+    <div class="from-group row">
+        <label for="" class="col-sm-2 col-form-label"><strong>Texto</strong></label>
+        <div class="col-sm-10">
+            <input type="text" id="txtTexto" name="txtTexto" class="form-control" required value="{{ dato.Texto}}">
+        </div>
+    </div>
+    <div class="from-group row">
+        <label for="" class="col-sm-2 col-form-label"><strong>Descripción</strong></label>
+        <div class="col-sm-10">
+            <input type="text" id="txtDescrip" name="txtDescrip" class="form-control" required
+                   value="{{ dato.Descripcion}}">
+        </div>
+    </div>
+    <br/>
+    <button type="submit" id="btnModificar" class="btn btn-primary">Modificar</button>
+    <input type="hidden" id="txtID" name="txtID" class="form-control" value="{{ dato.ID}}">
+</form>
+{% endfor %}
+{% endblock %}
